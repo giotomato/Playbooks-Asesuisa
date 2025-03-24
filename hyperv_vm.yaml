@@ -1,0 +1,37 @@
+---
+- name: Crear reporte máquina virtual en Hyper-V
+  hosts: hyperv_host
+  gather_facts: no
+  vars_files:
+    -  files/credentials.yml
+  tasks:
+    - name: Obtener información sobre todas las máquinas virtuales
+      win_shell: |
+          $VMs = Get-VM
+          $VMReport = $VMs | Select-Object Name, State, MemoryAssigned, ProcessorCount, Uptime, @{Name="CPU Usage (%)";Expression={(Get-VMProcessor -VMName $_.Name).ProcessorLoad}}, @{Name="Disk Size (GB)";Expression={((Get-VMHardDiskDrive -VMName $_.Name).Size / 1GB).ToString("0.##")}}
+          $VMReport | ConvertTo-Csv -NoTypeInformation
+      register: vm_report
+
+    - name: Crear archivo CSV localmente (en el servidor donde ejecutas Ansible)
+      local_action: 
+        module: copy
+        content: "{{ vm_report.stdout }}"
+        dest: "./VMReport.csv"  # Esto guardará el archivo en el mismo directorio donde ejecutas el playbook
+        mode: '0644'
+
+    - name: Envio email
+      community.general.mail:
+        host: smtp.office365.com
+        port: 587
+        username: notificacion@asesuisa.com
+        password: '{{passnotify_host}}'
+        from: notificacion@asesuisa.com
+        to: 
+            - jarivera@asesuisa.com
+            - palvarenga@asesuisa.com
+            - nlhernandez@asesuisa.com
+        subject: "Reporte vm"
+        body: "Reporte de vm's Hyper V en clusters asesuisa"
+        attach: /home/giotomato/playbooks/VMReport.csv
+        secure: starttls
+      delegate_to: localhost
