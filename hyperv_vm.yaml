@@ -4,6 +4,8 @@
   gather_facts: no
   vars_files:
     -  files/credentials.yml
+  collections:
+    - community.general
   tasks:
     - name: Obtener información sobre todas las máquinas virtuales
       win_shell: |
