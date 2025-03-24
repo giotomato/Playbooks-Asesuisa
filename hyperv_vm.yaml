@@ -19,17 +19,17 @@
         dest: "./VMReport.csv"  # Esto guardará el archivo en el mismo directorio donde ejecutas el playbook
         mode: '0644'
 
-    # - name: Envio email
-    #   community.general.mail:
-    #     host: smtp.office365.com
-    #     port: 587
-    #     username: notificacion@asesuisa.com
-    #     password: '{{passnotify_host}}'
-    #     from: notificacion@asesuisa.com
-    #     to: 
-    #         - jarivera@asesuisa.com
-    #     subject: "Reporte vm"
-    #     body: "Reporte de vm's Hyper V en clusters asesuisa"
-    #     attach: /home/giotomato/playbooks/VMReport.csv
-    #     secure: starttls
-    #   delegate_to: localhost
+    - name: Envio email
+      community.general.mail:
+        host: smtp.office365.com
+        port: 587
+        username: notificacion@asesuisa.com
+        password: '{{passnotify_host}}'
+        from: notificacion@asesuisa.com
+        to: 
+            - jarivera@asesuisa.com
+        subject: "Reporte vm"
+        body: "Reporte de vm's Hyper V en clusters asesuisa"
+        attach: /home/giotomato/playbooks/VMReport.csv
+        secure: starttls
+      delegate_to: localhost
