@@ -1,0 +1,8 @@
+---
+- name: Hacer ping a los servidores
+  hosts: all
+  gather_facts: no
+  tasks:
+    - name: Verificar conectividad
+      ping:
+
