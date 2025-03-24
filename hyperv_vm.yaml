@@ -22,7 +22,7 @@
         mode: '0644'
 
     - name: Envio email
-      mail:
+      community.general.mail:
         host: smtp.office365.com
         port: 587
         username: notificacion@asesuisa.com
