@@ -2,6 +2,8 @@
 - name: Crear reporte máquina virtual en Hyper-V
   hosts: all
   gather_facts: no
+  vars_files:
+    -  files/credentials.yml
   tasks:
     - name: Obtener información sobre todas las máquinas virtuales
       win_shell: |
@@ -17,7 +19,7 @@
         dest: "C:%Users%jarivera%Documents%Inventarios%VMReport.csv"  # Esto guardará el archivo en el mismo directorio donde ejecutas el playbook
         mode: '0644'
 
-    # - name: Envio emai
+    # - name: Envio email
     #   community.general.mail:
     #     host: smtp.office365.com
     #     port: 587
@@ -28,6 +30,6 @@
     #         - jarivera@asesuisa.com
     #     subject: "Reporte vm"
     #     body: "Reporte de vm's Hyper V en clusters asesuisa"
-    #     attach: /VMReport.csv
+    #     attach: /home/giotomato/playbooks/VMReport.csv
     #     secure: starttls
     #   delegate_to: localhost
