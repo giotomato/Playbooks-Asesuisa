@@ -10,24 +10,10 @@
           $VMReport | ConvertTo-Csv -NoTypeInformation
       register: vm_report
 
-    - name: Crear archivo CSV localmente (en el servidor donde ejecutas Ansible)
+    - name: Crear archivo CSV en el servidor de Windows
       win_copy: 
         content: "{{ vm_report.stdout }}"
-        dest: "C:%Users%jarivera%Documents%Inventarios%VMReport.csv"  # Esto guardará el archivo en el servidor windows
-
-    # - name: Enviar el archivo CSV por correo electrónico
-    #   win_mail:
-    #     host: smtp.office365.com
-    #     port: 587 
-    #     username: notificacion@asesuisa.com
-    #     password: '{{passnotify_host}}'
-    #     subject: "Reporte de Máquinas Virtuales"
-    #     body: "Adjunto encontrarás el reporte de las máquinas virtuales."
-    #     to: "jarivera@asesuisa.com"
-    #     from: "notificacion@asesuisa.com"
-    #     secure: starttls
-    #     attachments:
-    #       - "C:%Users%jarivera%Documents%Inventarios%VMReport.csv"
+        dest: "C:\\Users\\jarivera\\Documents\\Inventarios\\VMReport.csv"
 
     # - name: Envio email
     #   community.general.mail:
