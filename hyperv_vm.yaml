@@ -15,6 +15,22 @@
         content: "{{ vm_report.stdout }}"
         dest: "C:\\Users\\jarivera\\Documents\\Inventarios\\VMReport.csv"
 
+    - name: Enviar el archivo CSV por correo usando PowerShell
+      win_shell: |
+          $smtpServer = "smtp.office365.com"
+          $smtpPort = 587
+          $smtpUser = "notificacion@asesuisa.com"
+          $smtpPassword = "{{passnotify_host}}"
+          $smtpFrom = "notificacion@asesuisa.com"
+          $smtpTo = "jarivera@asesuisa.com"
+          $messageSubject = "Reporte de Máquinas Virtuales"
+          $messageBody = "Adjunto encontrarás el reporte de las máquinas virtuales."
+          $attachment = "C:\\Users\\jarivera\\Documents\\Inventarios\\VMReport.csv"
+          $smtp = New-Object Net.Mail.SmtpClient($smtpServer)
+          $msg = New-Object Net.Mail.MailMessage($smtpFrom, $smtpTo, $messageSubject, $messageBody)
+          $msg.Attachments.Add($attachment)
+          $smtp.Send($msg)
+
     # - name: Envio email
     #   community.general.mail:
     #     host: smtp.office365.com
