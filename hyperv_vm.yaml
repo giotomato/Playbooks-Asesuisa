@@ -1,6 +1,6 @@
 ---
 - name: Crear reporte máquina virtual en Hyper-V
-  hosts: hyperv_host
+  hosts: all
   gather_facts: no
   tasks:
     - name: Obtener información sobre todas las máquinas virtuales
