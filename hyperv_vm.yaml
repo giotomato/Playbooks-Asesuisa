@@ -28,3 +28,4 @@
         body: "Reporte de vm's Hyper V en clusters asesuisa"
         # attach: /home/giotomato/playbooks/VMReport.csv
         secure: starttls
+      delegate_to: localhost

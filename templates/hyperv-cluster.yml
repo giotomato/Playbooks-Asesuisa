@@ -8,4 +8,4 @@ all:
       ansible_winrm_port: 5985
       ansible_winrm_transport: ntlm
       ansible_winrm_server_cert_validation: ignore
-      #ansible_python_interpreter: C:\Python39\python.exe
+      ansible_python_interpreter: C:\Python39\python.exe
