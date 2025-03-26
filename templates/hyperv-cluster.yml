@@ -3,7 +3,7 @@ all:
     hyperv_host:
       ansible_host: 192.168.0.3
       ansible_user: jarivera@asesuisa.com
-      ansible_password: '{{hyper_password}}'
+      ansible_password: J30v4nyR1v3r4123$
       ansible_connection: winrm
       ansible_winrm_port: 5985
       ansible_winrm_transport: ntlm
