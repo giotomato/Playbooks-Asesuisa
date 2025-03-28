@@ -6,6 +6,11 @@
       ansible_winrm_transport: ntlm
       ansible_winrm_server_cert_validation: ignore
       ansible_python_interpreter: C:\Python39\python.exe
-
-[linux]
-192.168.0.25
+all:
+  children:
+    windows:
+      hosts:
+        windows_server_1: 192.168.0.3
+    linux:
+      hosts:
+        linux_server_1: 192.168.0.25
