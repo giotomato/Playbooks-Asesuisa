@@ -1,6 +1,6 @@
 ---
   - name: ping windows task
-    hosts: win
+    hosts: windows
     become: false
     gather_facts: false
     tasks:

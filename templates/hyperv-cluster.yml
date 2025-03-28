@@ -1,21 +1,20 @@
 all:
-  hosts:
-    hyperv_host:
-      ansible_host: 192.168.0.3
-      ansible_connection: winrm
-      ansible_winrm_port: 5985
-      ansible_winrm_transport: ntlm
-      ansible_winrm_server_cert_validation: ignore
-      ansible_python_interpreter: C:\Python39\python.exe
+  vars:
+    ansible_user: jarivera@asesuisa.com
+    ansible_password: J30v4nyR1v3r4123$
+    ansible_connection: winrm
+    ansible_winrm_port: 5985
+    ansible_winrm_transport: ntlm
+    ansible_winrm_server_cert_validation: ignore
+    ansible_python_interpreter: C:\Python39\python.exe
 
-
-all:
   children:
     windows:
       hosts:
-        windows_server_1: 
+        jarivera_win: 
           ansible_host: 192.168.0.3
+
     linux:
       hosts:
-        linux_server_1: 
+        jarivera_linux: 
           ansible_host: 192.168.0.25
