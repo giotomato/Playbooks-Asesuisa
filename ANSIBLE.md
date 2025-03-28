@@ -45,8 +45,6 @@ Proporcionar una manera eficiente de gestionar y mantener la infraestructura de 
         safe_name: "SV-WIN-DO-PAMCA"
         account_name: "pam_ca"
       register: server_account
-    
-    - name: Hacer ping a un servidor de prueba
       
     
 
