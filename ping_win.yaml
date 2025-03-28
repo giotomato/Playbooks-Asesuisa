@@ -1,8 +1,8 @@
 ---
   - name: ping windows task
-    hosts: all
+    hosts: win
     become: false
     gather_facts: false
     tasks:
-      - name:  pingtest
+      - name:  Verificar conectividad
         win_ping: 
