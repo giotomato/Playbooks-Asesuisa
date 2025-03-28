@@ -1,6 +1,6 @@
 ---
   - name: ping windows task
-    hosts: all
+    hosts: hyperv_host
     become: false
     gather_facts: false
     tasks:
