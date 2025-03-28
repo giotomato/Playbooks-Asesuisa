@@ -11,8 +11,3 @@ all:
       hosts:
         jarivera_win: 
           ansible_host: 192.168.0.3
-
-    linux:
-      hosts:
-        jarivera_linux: 
-          ansible_host: 192.168.0.25
