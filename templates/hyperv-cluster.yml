@@ -2,7 +2,9 @@ all:
   children:
     windows:
       hosts:
-        windows_server_1: 192.168.0.3
+        windows_server_1: 
+          ansible_host: 192.168.0.3
     linux:
       hosts:
-        linux_server_1: 192.168.0.25
+        linux_server_1: 
+          ansible_host: 192.168.0.25
