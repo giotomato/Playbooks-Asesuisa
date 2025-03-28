@@ -1,6 +1,6 @@
 ---
 - name: Hacer ping a los servidores
-  hosts: all
+  hosts: hyperv_host
   gather_facts: no
   tasks:
     - name: Verificar conectividad
