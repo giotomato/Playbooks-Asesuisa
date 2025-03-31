@@ -6,3 +6,5 @@
     - name: Verificar conectividad
       ping:
 
+    - name: instalando nginx
+      include_role: name=roles/nginx_rol

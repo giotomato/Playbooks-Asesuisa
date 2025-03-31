@@ -1,0 +1,56 @@
+- name: Actualizar los paquetes del sistema
+  apt:
+    update_cache: yes
+
+- name: Instalar Nginx
+  apt:
+    name: nginx
+    state: present
+
+- name: Crear directorio para la página de prueba
+  file:
+    path: /var/www/html/prueba
+    state: directory
+    mode: '0755'
+
+- name: Crear archivo HTML de prueba
+  copy:
+    dest: /var/www/html/prueba/index.html
+    content: |
+      <!DOCTYPE html>
+      <html>
+      <head>
+          <title>Página de Prueba</title>
+      </head>
+      <body>
+          <h1>¡Nginx está funcionando!</h1>
+          <p>Esta es una página de prueba.</p>
+      </body>
+      </html>
+
+- name: Configurar Nginx para servir la página de prueba
+  copy:
+    dest: /etc/nginx/sites-available/prueba
+    content: |
+      server {
+          listen 80;
+          server_name localhost;
+
+          root /var/www/html/prueba;
+          index index.html;
+
+          location / {
+              try_files $uri $uri/ =404;
+          }
+      }
+
+- name: Habilitar configuración de Nginx
+  file:
+    src: /etc/nginx/sites-available/prueba
+    dest: /etc/nginx/sites-enabled/prueba
+    state: link
+
+- name: Reiniciar Nginx
+  service:
+    name: nginx
+    state: restarted
