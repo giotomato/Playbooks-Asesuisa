@@ -1,0 +1,7 @@
+---
+- name: Instalacion de servidor web nginx a los servidores
+  hosts: linux
+  gather_facts: no
+  tasks:
+    - name: Instalando nginx
+      include_role: name=nginx_rol
