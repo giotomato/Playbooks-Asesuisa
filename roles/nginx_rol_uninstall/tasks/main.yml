@@ -1,0 +1,20 @@
+- name: Desinstalar Nginx
+  apt:
+    name: nginx
+    state: absent
+
+- name: Eliminar directorio de la página de prueba
+  file:
+    path: /var/www/html/prueba
+    state: absent
+    recurse: yes
+
+- name: Eliminar configuración de Nginx
+  file:
+    path: /etc/nginx/sites-available/prueba
+    state: absent
+
+- name: Eliminar enlace simbólico de configuración de Nginx
+  file:
+    path: /etc/nginx/sites-enabled/prueba
+    state: absent

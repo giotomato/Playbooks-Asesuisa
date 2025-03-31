@@ -5,3 +5,8 @@
   tasks:
     - name: Instalando nginx
       include_role: name=nginx_rol
+      tags: install
+    
+    - name: Desintalando nginx
+      include_role: name=nginx_rol_uninstall
+      tags: uninstall
